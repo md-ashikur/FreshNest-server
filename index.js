@@ -1,14 +1,16 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const port = 3000;
+const port = process.env.PORT;
 const { MongoClient, ServerApiVersion } = require("mongodb");
+require("dotenv").config();
+
 
 app.use(cors());
 app.use(express.json());
 
-const uri =
-  "mongodb+srv://ashik76690:Yym6xcFm2XtLrQe2@cluster0.gha5iai.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = process.env.DATABASE_URL;
+  
 
 const client = new MongoClient(uri, {
   serverApi: {
@@ -66,5 +68,4 @@ app.listen(port, (req, res) => {
   console.log("listening on port :", port);
 });
 
-// ashik76690
-// Yym6xcFm2XtLrQe2
+
